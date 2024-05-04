@@ -13,11 +13,27 @@ import com.example.studenttodoapp.databasehelper.DatabaseHelper;
 import com.example.studenttodoapp.model.Task;
 
 import java.util.Calendar;
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.studenttodoapp.databasehelper.DatabaseHelper;
+import com.example.studenttodoapp.model.Task;
+
+import java.util.Calendar;
 
 public class TaskActivity extends AppCompatActivity {
-    private EditText editTextName, editTextDueDate, editTextPriority;
+    private EditText editTextName, editTextDueDate;
     private CheckBox checkBoxCompleted;
     private Button btnSave;
+    private Spinner spinnerPriority;
     private DatabaseHelper databaseHelper;
 
     @Override
@@ -27,9 +43,9 @@ public class TaskActivity extends AppCompatActivity {
 
         editTextName = findViewById(R.id.editText_task_name);
         editTextDueDate = findViewById(R.id.editText_due_date);
-        editTextPriority = findViewById(R.id.editText_priority);
         checkBoxCompleted = findViewById(R.id.checkBox_complete);
         btnSave = findViewById(R.id.button_save_task);
+        spinnerPriority = findViewById(R.id.spinner_priority);
 
         databaseHelper = DatabaseHelper.getInstance(this);
 
@@ -50,15 +66,15 @@ public class TaskActivity extends AppCompatActivity {
     private void saveTask() {
         String name = editTextName.getText().toString();
         String dueDate = editTextDueDate.getText().toString();
-        String priority = editTextPriority.getText().toString();
+        String priority = spinnerPriority.getSelectedItem().toString();
         boolean isCompleted = checkBoxCompleted.isChecked();
 
-        if (name.isEmpty() || dueDate.isEmpty() || priority.isEmpty()) {
+        if (name.isEmpty() || dueDate.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Task task = new Task(0, name, dueDate, priority, isCompleted); // Assuming ID is auto-generated
+        Task task = new Task(0, name, dueDate, priority, isCompleted);
         databaseHelper.addTask(task);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

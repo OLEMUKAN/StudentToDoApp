@@ -5,4 +5,12 @@
         <string name="priority">Priority</string>
         <string name="completed">Completed</string>
         <string name="save_task">Save Task</string>
+
+    <string-array name="priority_options">
+        <item>Important</item>
+        <item>Not Important</item>
+        <item>Urgent</item>
+        <item>Not Urgent</item>
+    </string-array>
+
 </resources>

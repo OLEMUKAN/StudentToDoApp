@@ -32,17 +32,11 @@
             android:clickable="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout_priority"
+    <Spinner
+        android:id="@+id/spinner_priority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/priority">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText_priority"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:entries="@array/priority_options" />
 
     <CheckBox
         android:id="@+id/checkBox_complete"
